@@ -6,12 +6,15 @@
 /*   By: asaulnie <asaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:18:23 by asaulnie          #+#    #+#             */
-/*   Updated: 2024/09/13 14:41:42 by asaulnie         ###   ########.fr       */
+/*   Updated: 2024/09/13 16:50:22 by asaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 10
+# endif
 
 # include <stdlib.h>
 # include <unistd.h>

@@ -6,12 +6,11 @@
 /*   By: asaulnie <asaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:18:41 by asaulnie          #+#    #+#             */
-/*   Updated: 2024/09/13 16:41:45 by asaulnie         ###   ########.fr       */
+/*   Updated: 2024/09/13 16:49:38 by asaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
 
 char	*append_to_line(char *line, const char *buffer, ssize_t len)
 {
@@ -66,9 +65,7 @@ ssize_t	read_into_buffer(int fd, char *buffer, ssize_t *bytes)
 		*bytes = bytes_read;
 	}
 	else
-	{
 		*bytes = 0;
-	}
 	return (bytes_read);
 }
 

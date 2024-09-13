@@ -6,7 +6,7 @@
 /*   By: asaulnie <asaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:18:41 by asaulnie          #+#    #+#             */
-/*   Updated: 2024/09/13 16:29:12 by asaulnie         ###   ########.fr       */
+/*   Updated: 2024/09/13 16:39:01 by asaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,7 @@ char	*get_next_line(int fd)
 			bytes_read = read_into_buffer(fd, buffer, &bytes);
 			i = 0;
 			if (bytes_read == -1)
-			{
-				free(line);
-				return (NULL);
-			}
+				return (free(line), NULL);
 			if (bytes_read == 0)
 				break ;
 		}
@@ -125,3 +122,6 @@ char	*get_next_line(int fd)
 // 	close(fd);
 // 	return (0);
 // }
+
+/*free(line);
+return (NULL);*/

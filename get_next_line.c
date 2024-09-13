@@ -6,7 +6,7 @@
 /*   By: asaulnie <asaulnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:18:41 by asaulnie          #+#    #+#             */
-/*   Updated: 2024/09/13 14:44:46 by asaulnie         ###   ########.fr       */
+/*   Updated: 2024/09/13 16:29:12 by asaulnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,10 @@ ssize_t	read_into_buffer(int fd, char *buffer, ssize_t *bytes)
 		buffer[bytes_read] = '\0';
 		*bytes = bytes_read;
 	}
+	else
+	{
+		*bytes = 0;
+	}
 	return (bytes_read);
 }
 
@@ -77,7 +81,7 @@ char	*get_next_line(int fd)
 	ssize_t			bytes_read;
 
 	line = NULL;
-	if (BUFFER_SIZE <= 0)
+	if (BUFFER_SIZE <= 0 || fd < 0)
 		return (NULL);
 	while (1)
 	{
@@ -85,7 +89,12 @@ char	*get_next_line(int fd)
 		{
 			bytes_read = read_into_buffer(fd, buffer, &bytes);
 			i = 0;
-			if (bytes_read <= 0)
+			if (bytes_read == -1)
+			{
+				free(line);
+				return (NULL);
+			}
+			if (bytes_read == 0)
 				break ;
 		}
 		line = process_buffer(buffer, &i, bytes, line);
@@ -95,24 +104,24 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-int	main(void)
-{
-	int		fd;
-	char	*line;
+// int	main(void)
+// {
+// 	int		fd;
+// 	char	*line;
 
-	fd = open("text.txt", O_RDONLY);
-	if (fd < 0)
-	{
-		printf("Error");
-		return (1);
-	}
-	line = get_next_line(fd);
-	while (line != NULL)
-	{
-		printf("%s", line);
-		free(line);
-		line = get_next_line(fd);
-	}
-	close(fd);
-	return (0);
-}
+// 	fd = open("text.txt", O_RDONLY);
+// 	if (fd < 0)
+// 	{
+// 		printf("Error");
+// 		return (1);
+// 	}
+// 	line = get_next_line(fd);
+// 	while (line != NULL)
+// 	{
+// 		printf("%s", line);
+// 		free(line);
+// 		line = get_next_line(fd);
+// 	}
+// 	close(fd);
+// 	return (0);
+// }

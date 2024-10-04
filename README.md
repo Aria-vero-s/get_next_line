@@ -66,17 +66,17 @@ To use the `get_next_line` function, include `get_next_line.h` and call the func
 int	main(void)
 {
 	int		fd;
-	char	*line;
+	char	*output;
 
 	fd = open("text.txt", O_RDONLY);
 	if (fd < 0)
 		return (1);
-	line = get_next_line(fd);
-	while (line != NULL)
+	output = get_next_line(fd);
+	while (output != NULL)
 	{
-		printf("%s", line);
-		free(line);
-		line = get_next_line(fd);
+		printf("%s", output);
+		free(output);
+		output = get_next_line(fd);
 	}
 	close(fd);
 	return (0);
